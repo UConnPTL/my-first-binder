@@ -1,7 +1,7 @@
 numpy>=1.25.0
 matplotlib
 IPython
-mpl_toolkits
+mpl_toolkits.mplot3d
 statistics
 ipywidgets
 nbconvert
