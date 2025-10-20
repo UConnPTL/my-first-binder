@@ -1,5 +1,5 @@
 numpy>=1.25.0
-matplotlib.pyplot
+matplotlib
 IPython
 mpl_toolkits
 statistics
