@@ -1,1 +1,12 @@
-
+numpy
+matplotlib.pyplot
+IPython.display
+IPython.core.display
+mpl_toolkits.mplot3
+statistics
+ipywidgets
+nbconvert
+scipy.integrate
+datetime
+reportlab.lib
+openpyxl
