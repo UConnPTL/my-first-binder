@@ -109,6 +109,7 @@ def savepdf():
     ["Lab_Number:", str(Lab_Number)],
     ["Group_Number:", str(group.value)],
     ["Group_Members:", str(names.value)],
+    ["Notebook_URL:", str(url.value)],
     ["Q1:", Q_1.value],
     ["Q2:", Q_2.value],
     ["Q3:", Q_3.value],
