@@ -65,14 +65,6 @@ names = ipywidgets.Text(
         disabled=False,
     )
 
-#Creates the group member names textbox for lab url:
-url = ipywidgets.Text(
-        value=None,
-        placeholder="Copy-paste web address (URL) here",
-        description="URL:",
-        disabled=False,
-    )
-
 #Creates the name textbox for pre-labs:
 #pl_names = ipywidgets.Text(
 #        value=None,
@@ -80,6 +72,14 @@ url = ipywidgets.Text(
 #        description="Name:",
 #        disabled=False,
 #    )
+
+#Creates the group member names textbox for lab url:
+url = ipywidgets.Text(
+        value=None,
+        placeholder="Copy-paste web address (URL) here",
+        description="URL:",
+        disabled=False,
+    )
 
 #Initialized lab files.  Course number determines options for section number and time.
 def course(inpt):
@@ -176,49 +176,483 @@ def course(inpt):
     #displays the url textbox.
     display(url)
     
-    
-
+# Intitializes pre-lab files.
+#def pl_course(inpt):
+#    if inpt == "1501fall":
+#        section.options = [
+#        "Select your section",
+#        "001 - MoWeTh 8am-9:55am",
+#        "002 - MoWeTh 10:10am-12:05pm",
+#        "003 - MoWeTh 12:20pm-2:15pm",
+#        "004 - MoWeTh 2:30pm-4:25pm",
+#        "005 - MoWeTh 4:40pm-6:35pm",
+#        "006 - TuThFr 8am-9:55am",
+#        "007 - TuThFr 10:10am-12:05pm",
+#        "008 - TuThFr 12:20pm-2:15pm"
+#        ]
+#    elif inpt == "1501spring":
+#        section.options = [
+#        "Select your section",
+#        "001 - MoWeTh 10:10am-12:05pm",
+#        "002 - MoWeTh 12:20pm-2:15pm",
+#        "003 - MoWeTh 2:30pm-4:25pm",
+#        "004 - MoWeTh 4:40pm-6:35pm",
+#        "005 - TuThFr 8am-9:55am",
+#        "006 - TuThFr 10:10am-12:05pm",
+#        "007 - TuThFr 12:20pm-2:15pm"
+#        ]
+#    elif inpt == "1502fall":
+#        section.options = [
+#        "Select your section",
+#        "001 - MoWeTh 10:10am-12:05pm",
+#        "002 - MoWeTh 12:20pm-2:15pm",
+#        "003 - MoWeTh 2:30pm-4:25pm",
+#        "004 - MoWeTh 4:40pm-6:35pm",
+#        "005 - TuThFr 8am-9:55am",
+#        "006 - TuThFr 10:10am-12:05pm",
+#        "007 - TuThFr 12:20pm-2:15pm"
+#        ]
+#    elif inpt == "1502spring":
+#        section.options = [
+#        "Select your section",
+#        "001 - MoWeTh 8am-9:55am",
+#        "002 - MoWeTh 10:10am-12:05pm",
+#        "003 - MoWeTh 12:20pm-2:15pm",
+#        "004 - MoWeTh 2:30pm-4:25pm",
+#        "005 - MoWeTh 4:40pm-6:35pm",
+#        "006 - TuThFr 8am-9:55am",
+#        "007 - TuThFr 10:10am-12:05pm",
+#        "008 - TuThFr 12:20pm-2:15pm"
+#        ]
+#    elif inpt == "1401fall":
+#        section.options = [
+#        "Select your section",
+#        "001 - MoTuTh 8am-9:55am",
+#        "002 - MoTuTh 10:10am-12:05pm",
+#        "003 - MoTuTh 12:20pm-2:15pm",
+#        "004 - MoTuTh 2:30pm-4:25pm",
+#        ]
+#    elif inpt == "1401spring":
+#        section.options = [
+#        "Select your section",
+#        "001 - MoWeFr 8am-9:55am",
+#        "002 - MoWeFr 10:10am-12:05pm",
+#        ]
+#    elif inpt == "1402fall":
+#        section.options = [
+#        "Select your section",
+#        "001 - MoWeFr 8am-9:55am",
+#        "002 - MoWeFr 10:10am-12:05pm",
+#        ]
+#    elif inpt == "1402spring":
+#        section.options = [
+#        "Select your section",
+#        "001 - MoTuTh 8am-9:55am",
+#        "002 - MoTuTh 10:10am-12:05pm",
+#        "003 - MoTuTh 12:20pm-2:15pm",
+#        "004 - MoTuTh 2:30pm-4:25pm",
+#        ]
+#    elif inpt == "1601":
+#        section.options = ["Select your section","001 - MoWeFr 10:10am-12:05pm",]
+#    elif inpt == "1602":
+#        section.options = ["Select your section","001 - MoWeFr 10:10am-12:05pm",]
+#    else:
+#        section.options = ["error",]
+#    
+#    #displays the course selection dropdown menu.
+#    section.value="Select your section"
+#    display(section)
+#
+#    #displays the group member names textbox.
+#    display(pl_names)
 
 #QUESTION ANSWER CELLS
 #Protections added in case cell is accidentally re-run - will remember input values as long as kernel is not restarted or closed.
 #Input values are NOT remembered if the kernel is restarted!!  They will need to be manually copy-pasted by user from the excel back-up.
 #Unfortunately, you need a separate, distinct variable/function for each question/answer.  More info below with legacy code.
 
-answers = [None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None]
-
-def Q(qnumber,labnamexl):
-    Question = ipywidgets.Textarea(
-        value=answers[qnumber-1],
-        placeholder="Type your answer to Q"+str(qnumber)+" here",
-        description= "Q"+str(qnumber)+":",
+#Question 1 answer cell:
+Q_1 = ipywidgets.Textarea(
+        value=None,
+        placeholder="Type your answer to Q1 here",
+        description= "Q1:",
         disabled=False
     )
-    answers[qnumber-1] = Question.value
-    display(Question)
+def Q1(labnamexl):
+    display(Q_1)
+    answers = [Q_1.value,Q_2.value,Q_3.value,Q_4.value,Q_5.value,Q_6.value,Q_7.value,Q_8.value,Q_9.value,Q_10.value,Q_11.value,Q_12.value,Q_13.value,Q_14.value,Q_15.value,Q_16.value,Q_17.value,Q_18.value]
     workbook = load_workbook(filename=labnamexl+txl+".xlsx")
     sheet = workbook.active
-    sheet["A"+str(qnumber)]="Q"+str(qnumber)
+    sheet["A1"]="Lab URL"
+    sheet["B1"]=url.value
+    sheet["A2"]="Q1"
     for i in range(len(answers)):
-        sheet["B"+str(i+1)]=answers[i]
+        sheet["B"+str(i+2)]=answers[i]
     workbook.save(filename=labnamexl+txl+".xlsx")
 
-
-
-
 #Question 2 answer cell:
-#Q_2 = ipywidgets.Textarea(
-#        value=None,
-#        placeholder="Type your answer to Q2 here",
-#        description= "Q2:",
+Q_2 = ipywidgets.Textarea(
+        value=None,
+        placeholder="Type your answer to Q2 here",
+        description= "Q2:",
+        disabled=False
+    )
+def Q2(labnamexl):
+    display(Q_2)
+    answers = [Q_1.value,Q_2.value,Q_3.value,Q_4.value,Q_5.value,Q_6.value,Q_7.value,Q_8.value,Q_9.value,Q_10.value,Q_11.value,Q_12.value,Q_13.value,Q_14.value,Q_15.value,Q_16.value,Q_17.value,Q_18.value]
+    workbook = load_workbook(filename=labnamexl+txl+".xlsx")
+    sheet = workbook.active
+    sheet["A1"]="Lab URL"
+    sheet["B1"]=url.value
+    sheet["A3"]="Q2"
+    for i in range(len(answers)):
+        sheet["B"+str(i+2)]=answers[i]
+    workbook.save(filename=labnamexl+txl+".xlsx")
+    
+#Question 3 answer cell:
+Q_3 = ipywidgets.Textarea(
+        value=None,
+        placeholder="Type your answer to Q3 here",
+        description= "Q3:",
+        disabled=False
+    )
+def Q3(labnamexl):
+    display(Q_3)
+    answers = [Q_1.value,Q_2.value,Q_3.value,Q_4.value,Q_5.value,Q_6.value,Q_7.value,Q_8.value,Q_9.value,Q_10.value,Q_11.value,Q_12.value,Q_13.value,Q_14.value,Q_15.value,Q_16.value,Q_17.value,Q_18.value]
+    workbook = load_workbook(filename=labnamexl+txl+".xlsx")
+    sheet = workbook.active
+    sheet["A1"]="Lab URL"
+    sheet["B1"]=url.value
+    sheet["A4"]="Q3"
+    for i in range(len(answers)):
+        sheet["B"+str(i+2)]=answers[i]
+    workbook.save(filename=labnamexl+txl+".xlsx")
+
+#Question 4 answer cell:
+Q_4 = ipywidgets.Textarea(
+        value=None,
+        placeholder="Type your answer to Q4 here",
+        description= "Q4:",
+        disabled=False
+    )
+def Q4(labnamexl):
+    display(Q_4)
+    answers = [Q_1.value,Q_2.value,Q_3.value,Q_4.value,Q_5.value,Q_6.value,Q_7.value,Q_8.value,Q_9.value,Q_10.value,Q_11.value,Q_12.value,Q_13.value,Q_14.value,Q_15.value,Q_16.value,Q_17.value,Q_18.value]
+    workbook = load_workbook(filename=labnamexl+txl+".xlsx")
+    sheet = workbook.active
+    sheet["A1"]="Lab URL"
+    sheet["B1"]=url.value
+    sheet["A5"]="Q4"
+    for i in range(len(answers)):
+        sheet["B"+str(i+2)]=answers[i]
+    workbook.save(filename=labnamexl+txl+".xlsx")
+
+#Question 5 answer cell:
+Q_5 = ipywidgets.Textarea(
+        value=None,
+        placeholder="Type your answer to Q5 here",
+        description= "Q5:",
+        disabled=False
+    )
+def Q5(labnamexl):
+    display(Q_5)
+    answers = [Q_1.value,Q_2.value,Q_3.value,Q_4.value,Q_5.value,Q_6.value,Q_7.value,Q_8.value,Q_9.value,Q_10.value,Q_11.value,Q_12.value,Q_13.value,Q_14.value,Q_15.value,Q_16.value,Q_17.value,Q_18.value]
+    workbook = load_workbook(filename=labnamexl+txl+".xlsx")
+    sheet = workbook.active
+    sheet["A1"]="Lab URL"
+    sheet["B1"]=url.value
+    sheet["A6"]="Q5"
+    for i in range(len(answers)):
+        sheet["B"+str(i+2)]=answers[i]
+    workbook.save(filename=labnamexl+txl+".xlsx")
+
+#Question 6 answer cell:
+Q_6 = ipywidgets.Textarea(
+        value=None,
+        placeholder="Type your answer to Q6 here",
+        description= "Q6:",
+        disabled=False
+    )
+def Q6(labnamexl):
+    display(Q_6)
+    answers = [Q_1.value,Q_2.value,Q_3.value,Q_4.value,Q_5.value,Q_6.value,Q_7.value,Q_8.value,Q_9.value,Q_10.value,Q_11.value,Q_12.value,Q_13.value,Q_14.value,Q_15.value,Q_16.value,Q_17.value,Q_18.value]
+    workbook = load_workbook(filename=labnamexl+txl+".xlsx")
+    sheet = workbook.active
+    sheet["A1"]="Lab URL"
+    sheet["B1"]=url.value
+    sheet["A7"]="Q6"
+    for i in range(len(answers)):
+        sheet["B"+str(i+2)]=answers[i]
+    workbook.save(filename=labnamexl+txl+".xlsx")
+
+#Question 7 answer cell:
+Q_7 = ipywidgets.Textarea(
+        value=None,
+        placeholder="Type your answer to Q7 here",
+        description= "Q7:",
+        disabled=False
+    )
+def Q7(labnamexl):
+    display(Q_7)
+    answers = [Q_1.value,Q_2.value,Q_3.value,Q_4.value,Q_5.value,Q_6.value,Q_7.value,Q_8.value,Q_9.value,Q_10.value,Q_11.value,Q_12.value,Q_13.value,Q_14.value,Q_15.value,Q_16.value,Q_17.value,Q_18.value]
+    workbook = load_workbook(filename=labnamexl+txl+".xlsx")
+    sheet = workbook.active
+    sheet["A1"]="Lab URL"
+    sheet["B1"]=url.value
+    sheet["A8"]="Q7"
+    for i in range(len(answers)):
+        sheet["B"+str(i+2)]=answers[i]
+    workbook.save(filename=labnamexl+txl+".xlsx")
+
+#Question 8 answer cell:
+Q_8 = ipywidgets.Textarea(
+        value=None,
+        placeholder="Type your answer to Q8 here",
+        description= "Q8:",
+        disabled=False
+    )
+def Q8(labnamexl):
+    display(Q_8)
+    answers = [Q_1.value,Q_2.value,Q_3.value,Q_4.value,Q_5.value,Q_6.value,Q_7.value,Q_8.value,Q_9.value,Q_10.value,Q_11.value,Q_12.value,Q_13.value,Q_14.value,Q_15.value,Q_16.value,Q_17.value,Q_18.value]
+    workbook = load_workbook(filename=labnamexl+txl+".xlsx")
+    sheet = workbook.active
+    sheet["A1"]="Lab URL"
+    sheet["B1"]=url.value
+    sheet["A9"]="Q8"
+    for i in range(len(answers)):
+        sheet["B"+str(i+2)]=answers[i]
+    workbook.save(filename=labnamexl+txl+".xlsx")
+
+#Question 9 answer cell:
+Q_9 = ipywidgets.Textarea(
+        value=None,
+        placeholder="Type your answer to Q9 here",
+        description= "Q9:",
+        disabled=False
+    )
+def Q9(labnamexl):
+    display(Q_9)
+    answers = [Q_1.value,Q_2.value,Q_3.value,Q_4.value,Q_5.value,Q_6.value,Q_7.value,Q_8.value,Q_9.value,Q_10.value,Q_11.value,Q_12.value,Q_13.value,Q_14.value,Q_15.value,Q_16.value,Q_17.value,Q_18.value]
+    workbook = load_workbook(filename=labnamexl+txl+".xlsx")
+    sheet = workbook.active
+    sheet["A1"]="Lab URL"
+    sheet["B1"]=url.value
+    sheet["A10"]="Q9"
+    for i in range(len(answers)):
+        sheet["B"+str(i+2)]=answers[i]
+    workbook.save(filename=labnamexl+txl+".xlsx")
+
+#Question 10 answer cell:
+Q_10 = ipywidgets.Textarea(
+        value=None,
+        placeholder="Type your answer to Q10 here",
+        description= "Q10:",
+        disabled=False
+    )
+def Q10(labnamexl):
+    display(Q_10)
+    answers = [Q_1.value,Q_2.value,Q_3.value,Q_4.value,Q_5.value,Q_6.value,Q_7.value,Q_8.value,Q_9.value,Q_10.value,Q_11.value,Q_12.value,Q_13.value,Q_14.value,Q_15.value,Q_16.value,Q_17.value,Q_18.value]
+    workbook = load_workbook(filename=labnamexl+txl+".xlsx")
+    sheet = workbook.active
+    sheet["A1"]="Lab URL"
+    sheet["B1"]=url.value
+    sheet["A11"]="Q10"
+    for i in range(len(answers)):
+        sheet["B"+str(i+2)]=answers[i]
+    workbook.save(filename=labnamexl+txl+".xlsx")
+
+#Question 11 answer cell:
+Q_11 = ipywidgets.Textarea(
+        value=None,
+        placeholder="Type your answer to Q11 here",
+        description= "Q11:",
+        disabled=False
+    )
+def Q11(labnamexl):
+    display(Q_11)
+    answers = [Q_1.value,Q_2.value,Q_3.value,Q_4.value,Q_5.value,Q_6.value,Q_7.value,Q_8.value,Q_9.value,Q_10.value,Q_11.value,Q_12.value,Q_13.value,Q_14.value,Q_15.value,Q_16.value,Q_17.value,Q_18.value]
+    workbook = load_workbook(filename=labnamexl+txl+".xlsx")
+    sheet = workbook.active
+    sheet["A1"]="Lab URL"
+    sheet["B1"]=url.value
+    sheet["A12"]="Q11"
+    for i in range(len(answers)):
+        sheet["B"+str(i+2)]=answers[i]
+    workbook.save(filename=labnamexl+txl+".xlsx")
+
+#Question 12 answer cell:
+Q_12 = ipywidgets.Textarea(
+        value=None,
+        placeholder="Type your answer to Q12 here",
+        description= "Q12:",
+        disabled=False
+    )
+def Q12(labnamexl):
+    display(Q_12)
+    answers = [Q_1.value,Q_2.value,Q_3.value,Q_4.value,Q_5.value,Q_6.value,Q_7.value,Q_8.value,Q_9.value,Q_10.value,Q_11.value,Q_12.value,Q_13.value,Q_14.value,Q_15.value,Q_16.value,Q_17.value,Q_18.value]
+    workbook = load_workbook(filename=labnamexl+txl+".xlsx")
+    sheet = workbook.active
+    sheet["A1"]="Lab URL"
+    sheet["B1"]=url.value
+    sheet["A13"]="Q12"
+    for i in range(len(answers)):
+        sheet["B"+str(i+2)]=answers[i]
+    workbook.save(filename=labnamexl+txl+".xlsx")
+    
+#Question 13 answer cell:
+Q_13 = ipywidgets.Textarea(
+        value=None,
+        placeholder="Type your answer to Q13 here",
+        description= "Q13:",
+        disabled=False
+    )
+def Q13(labnamexl):
+    display(Q_13)
+    answers = [Q_1.value,Q_2.value,Q_3.value,Q_4.value,Q_5.value,Q_6.value,Q_7.value,Q_8.value,Q_9.value,Q_10.value,Q_11.value,Q_12.value,Q_13.value,Q_14.value,Q_15.value,Q_16.value,Q_17.value,Q_18.value]
+    workbook = load_workbook(filename=labnamexl+txl+".xlsx")
+    sheet = workbook.active
+    sheet["A1"]="Lab URL"
+    sheet["B1"]=url.value
+    sheet["A14"]="Q13"
+    for i in range(len(answers)):
+        sheet["B"+str(i+2)]=answers[i]
+    workbook.save(filename=labnamexl+txl+".xlsx")
+
+#Question 14 answer cell:
+Q_14 = ipywidgets.Textarea(
+        value=None,
+        placeholder="Type your answer to Q14 here",
+        description= "Q14:",
+        disabled=False
+    )
+def Q14(labnamexl):
+    display(Q_14)
+    answers = [Q_1.value,Q_2.value,Q_3.value,Q_4.value,Q_5.value,Q_6.value,Q_7.value,Q_8.value,Q_9.value,Q_10.value,Q_11.value,Q_12.value,Q_13.value,Q_14.value,Q_15.value,Q_16.value,Q_17.value,Q_18.value]
+    workbook = load_workbook(filename=labnamexl+txl+".xlsx")
+    sheet = workbook.active
+    sheet["A1"]="Lab URL"
+    sheet["B1"]=url.value
+    sheet["A15"]="Q14"
+    for i in range(len(answers)):
+        sheet["B"+str(i+2)]=answers[i]
+    workbook.save(filename=labnamexl+txl+".xlsx")
+
+#Question 15 answer cell:
+Q_15 = ipywidgets.Textarea(
+        value=None,
+        placeholder="Type your answer to Q15 here",
+        description= "Q15:",
+        disabled=False
+    )
+def Q15(labnamexl):
+    display(Q_15)
+    answers = [Q_1.value,Q_2.value,Q_3.value,Q_4.value,Q_5.value,Q_6.value,Q_7.value,Q_8.value,Q_9.value,Q_10.value,Q_11.value,Q_12.value,Q_13.value,Q_14.value,Q_15.value,Q_16.value,Q_17.value,Q_18.value]
+    workbook = load_workbook(filename=labnamexl+txl+".xlsx")
+    sheet = workbook.active
+    sheet["A1"]="Lab URL"
+    sheet["B1"]=url.value
+    sheet["A16"]="Q15"
+    for i in range(len(answers)):
+        sheet["B"+str(i+2)]=answers[i]
+    workbook.save(filename=labnamexl+txl+".xlsx")
+
+#Question 16 answer cell:
+Q_16 = ipywidgets.Textarea(
+        value=None,
+        placeholder="Type your answer to Q16 here",
+        description= "Q16:",
+        disabled=False
+    )
+def Q16(labnamexl):
+    display(Q_16)
+    answers = [Q_1.value,Q_2.value,Q_3.value,Q_4.value,Q_5.value,Q_6.value,Q_7.value,Q_8.value,Q_9.value,Q_10.value,Q_11.value,Q_12.value,Q_13.value,Q_14.value,Q_15.value,Q_16.value,Q_17.value,Q_18.value]
+    workbook = load_workbook(filename=labnamexl+txl+".xlsx")
+    sheet = workbook.active
+    sheet["A1"]="Lab URL"
+    sheet["B1"]=url.value
+    sheet["A17"]="Q16"
+    for i in range(len(answers)):
+        sheet["B"+str(i+2)]=answers[i]
+    workbook.save(filename=labnamexl+txl+".xlsx")
+
+#Question 17 answer cell:
+Q_17 = ipywidgets.Textarea(
+        value=None,
+        placeholder="Type your answer to Q17 here",
+        description= "Q17:",
+        disabled=False
+    )
+def Q17(labnamexl):
+    display(Q_17)
+    answers = [Q_1.value,Q_2.value,Q_3.value,Q_4.value,Q_5.value,Q_6.value,Q_7.value,Q_8.value,Q_9.value,Q_10.value,Q_11.value,Q_12.value,Q_13.value,Q_14.value,Q_15.value,Q_16.value,Q_17.value,Q_18.value]
+    workbook = load_workbook(filename=labnamexl+txl+".xlsx")
+    sheet = workbook.active
+    sheet["A1"]="Lab URL"
+    sheet["B1"]=url.value
+    sheet["A18"]="Q17"
+    for i in range(len(answers)):
+        sheet["B"+str(i+2)]=answers[i]
+    workbook.save(filename=labnamexl+txl+".xlsx")
+
+#Question 13 answer cell:
+Q_18 = ipywidgets.Textarea(
+        value=None,
+        placeholder="Type your answer to Q18 here",
+        description= "Q18:",
+        disabled=False
+    )
+def Q18(labnamexl):
+    display(Q_18)
+    answers = [Q_1.value,Q_2.value,Q_3.value,Q_4.value,Q_5.value,Q_6.value,Q_7.value,Q_8.value,Q_9.value,Q_10.value,Q_11.value,Q_12.value,Q_13.value,Q_14.value,Q_15.value,Q_16.value,Q_17.value,Q_18.value]
+    workbook = load_workbook(filename=labnamexl+txl+".xlsx")
+    sheet = workbook.active
+    sheet["A1"]="Lab URL"
+    sheet["B1"]=url.value
+    sheet["A19"]="Q18"
+    for i in range(len(answers)):
+        sheet["B"+str(i+2)]=answers[i]
+    workbook.save(filename=labnamexl+txl+".xlsx")
+        
+    
+# ... and so on and so forth for each question.  Create a long bank of these so we don't have to keep editing this document.
+
+
+#### OLD ANSWER CELL SYSTEM BELOW. OBSOLETE WITH INTRODUCTION OF QX FUNCTIONS ABOVE ####
+# Main issue with below is that all answers were saved as variable "response", which meant every new answer would overwrite the old one.
+# Answer history could be stored, but no reliable way to retrieve past responses on a particular question if students answer questions out of order or try to change a previous answer.
+#
+#answers = []
+#answer_history = ["test"]
+#answervalue = 0
+#
+#def responsecell(inpt):
+#    global response
+#    if len(answers) <= inpt-1:
+#        #answervalue="Type your answer to Q"+str(inpt)+" here"
+#        answervalue=None
+#    else:
+#        answervalue = answers[inpt-1]
+#    response = ipywidgets.Textarea(
+#        value=answervalue,
+#        placeholder="Type your answer to Q" + str(inpt) + " here",
+#        description= "Q" + str(inpt) + ":",
 #        disabled=False
 #    )
-#def Q2(labnamexl):
-#    display(Q_2)
-#    answers = [Q_1.value,Q_2.value,Q_3.value,Q_4.value,Q_5.value,Q_6.value,Q_7.value,Q_8.value,Q_9.value,Q_10.value,Q_11.value,Q_12.value,Q_13.value,Q_14.value,Q_15.value,Q_16.value,Q_17.value,Q_18.value]
-#    workbook = load_workbook(filename=labnamexl+txl+".xlsx")
-#    sheet = workbook.active
-#    sheet["A2"]="Q2"
-#    for i in range(len(answers)):
-#        sheet["B"+str(i+1)]=answers[i]
-#    workbook.save(filename=labnamexl+txl+".xlsx")
-    
+#    if len(answers) != inpt-1:
+#        print("New answer for Q"+str(inpt)+":")
+#    else:
+#        answers.append("Q"+str(inpt))
+#        #answer_history.append("Q"+str(inpt))
+#    return response
+
+
+##Student fills in answer on lab file.
+
+#def save_answer(inpt):
+#    if response.value == answer_history[0]:
+#        print("ERROR: Attempting to save a duplicate answer! If changing an answer to a previous question, highlight and copy your new answer, then re-run the question cell.  Paste your new answer into the cell, then re-attempt save.")
+#    else:
+#        answers[inpt-1] = response.value
+#        answer_history.insert(0,response.value)
+#        print("Answer saved.")
+#    return answers
